@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr2puyds5h4hn"]
+
+[ext_resource type="Texture2D" uid="uid://b1rn5apn5f3nb" path="res://star.png" id="1_i0sit"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_con2f"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(0.352941, 0.772549, 0.309804, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhnvy"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.352941, 0.772549, 0.309804, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="LevelButton" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxFlat_con2f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_con2f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mhnvy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_con2f")
+text = "1"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -23.0
+offset_top = 4.0
+offset_right = 105.0
+offset_bottom = 132.0
+grow_horizontal = 0
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_i0sit")

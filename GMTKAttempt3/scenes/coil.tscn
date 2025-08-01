@@ -1,0 +1,137 @@
+[gd_scene load_steps=13 format=4 uid="uid://bkx7725ang0x6"]
+
+[ext_resource type="Script" uid="uid://ctepu8q4btp5a" path="res://code/wire_selection.gd" id="1_e6x7f"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_evebv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evebv"]
+resource_local_to_scene = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qmq1r"]
+_surfaces = [{
+"aabb": AABB(-0.528867, -0.528867, -0.528867, 1.05773, 1.05773, 1.05773),
+"attribute_data": PackedByteArray("AAAAAAAAAACrqio/AAAAAKuqqj4AAAAAAACAPwAAAAAAAAAAAAAAP6uqKj8AAAA/q6qqPgAAAD8AAIA/AAAAP6uqqj4AAAAAAAAAAAAAAD+rqio/AAAAAKuqqj4AAAA/q6qqPgAAAD8AAAAAAACAP6uqKj8AAAA/q6qqPgAAgD+rqqo+AAAAP6uqKj8AAAA/q6oqPwAAAD8AAIA/AAAAP6uqqj4AAIA/q6oqPwAAgD+rqio/AACAPwAAgD8AAIA/"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAAEAAIAAgAEAAYAAQAFAAMAAwAFAAcACAAMAAoACgAMAA4ACQANAAsACwANAA8AEAAUABIAEgAUABYAEQAVABMAEwAVABcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("3GMHv9xjBz/cYwc/3GMHP9xjBz/cYwe/3GMHP9xjBz/cYwc/3GMHv9xjBz/cYwe/3GMHv9xjB7/cYwc/3GMHP9xjB7/cYwe/3GMHP9xjB7/cYwc/3GMHv9xjB7/cYwe/3GMHP9xjBz/cYwc/3GMHv9xjBz/cYwe/3GMHP9xjBz/cYwe/3GMHv9xjBz/cYwc/3GMHP9xjB7/cYwc/3GMHv9xjB7/cYwe/3GMHP9xjB7/cYwe/3GMHv9xjB7/cYwc/3GMHP9xjBz/cYwc/3GMHv9xjB7/cYwc/3GMHv9xjBz/cYwc/3GMHP9xjB7/cYwc/3GMHP9xjBz/cYwe/3GMHv9xjB7/cYwe/3GMHv9xjBz/cYwe/3GMHP9xjB7/cYwe//3//f////7//////AAD/v/9//3////+//////wAA/7//f/9/////v/////8AAP+//3//f////7//////AAD/v///AID/////AAAAgP9//7///wCA/////wAAAID/f/+///8AgP////8AAACA/3//v///AID/////AAAAgP9//78AgP//AAD/vwCAAAD///+/AID//wAA/78AgAAA////vwCA//8AAP+/AIAAAP///78AgP//AAD/vwCAAAD///+/")
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a2n4e"]
+shading_mode = 0
+
+[sub_resource type="Animation" id="Animation_qmq1r"]
+resource_name = "ERROR"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Outline:surface_material_override/0:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0.25098, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_siaa6"]
+_data = {
+&"ERROR": SubResource("Animation_qmq1r")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_evebv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qmq1r"]
+size = Vector3(1.6, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmq1r"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.294118)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qmq1r"]
+top_radius = 0.0
+bottom_radius = 0.15
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gfm4e"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.588235)
+
+[node name="Coil" type="StaticBody3D" groups=["obstruction", "selection"]]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_e6x7f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_evebv")
+surface_material_override/0 = SubResource("StandardMaterial3D_evebv")
+
+[node name="Outline" type="MeshInstance3D" parent="MeshInstance3D"]
+mesh = SubResource("ArrayMesh_qmq1r")
+surface_material_override/0 = SubResource("StandardMaterial3D_a2n4e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_siaa6")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_evebv")
+
+[node name="Arrows" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Arrows"]
+mesh = SubResource("BoxMesh_qmq1r")
+surface_material_override/0 = SubResource("StandardMaterial3D_qmq1r")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_qmq1r")
+surface_material_override/0 = SubResource("StandardMaterial3D_qmq1r")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(-4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, 0, 0, 0)
+mesh = SubResource("BoxMesh_qmq1r")
+surface_material_override/0 = SubResource("StandardMaterial3D_qmq1r")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_qmq1r")
+surface_material_override/0 = SubResource("StandardMaterial3D_gfm4e")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 1)
+mesh = SubResource("CylinderMesh_qmq1r")
+surface_material_override/0 = SubResource("StandardMaterial3D_gfm4e")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 0, 0, -1)
+mesh = SubResource("CylinderMesh_qmq1r")
+surface_material_override/0 = SubResource("StandardMaterial3D_gfm4e")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(1.31134e-07, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, 1.31134e-07, -5.73206e-15, 1, 0, 0)
+mesh = SubResource("CylinderMesh_qmq1r")
+surface_material_override/0 = SubResource("StandardMaterial3D_gfm4e")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, -1, 0, 0)
+mesh = SubResource("CylinderMesh_qmq1r")
+surface_material_override/0 = SubResource("StandardMaterial3D_gfm4e")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(-0.275503, -0.0300705, 0.96083, 0.069904, -0.997491, -0.011174, 0.958755, 0.0640874, 0.276913, 0, -1, 0)
+mesh = SubResource("CylinderMesh_qmq1r")
+surface_material_override/0 = SubResource("StandardMaterial3D_gfm4e")
+
+[node name="Raycast" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 0)

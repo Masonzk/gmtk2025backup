@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://jc2hpeywbshp"]
+
+[ext_resource type="ArrayMesh" uid="uid://chmbw2qrhqsbi" path="res://corner.obj" id="1_oh5q0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wpbid"]
+size = Vector3(0.75, 0.75, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpbid"]
+resource_local_to_scene = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oh5q0"]
+
+[node name="Wire" type="StaticBody3D" groups=["obstruction"]]
+
+[node name="Straight" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_wpbid")
+surface_material_override/0 = SubResource("StandardMaterial3D_wpbid")
+
+[node name="Corner" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 0, 0)
+visible = false
+mesh = ExtResource("1_oh5q0")
+surface_material_override/0 = SubResource("StandardMaterial3D_wpbid")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_oh5q0")

@@ -1,0 +1,273 @@
+[gd_scene load_steps=13 format=3 uid="uid://c1d7pyub5hg5a"]
+
+[ext_resource type="FontFile" uid="uid://cq2w2xcc67dm5" path="res://Montserrat-Bold.ttf" id="1_yqeox"]
+[ext_resource type="Script" uid="uid://dvnyhib3iyl68" path="res://code/menu.gd" id="2_con2f"]
+[ext_resource type="FontFile" uid="uid://dvvya0oom7bnl" path="res://Montserrat-Medium.ttf" id="2_vjb58"]
+[ext_resource type="PackedScene" uid="uid://dr2puyds5h4hn" path="res://scenes/level_button.tscn" id="4_mhnvy"]
+[ext_resource type="StyleBox" uid="uid://xxaq5f785qjx" path="res://themes/completed_pressed.tres" id="5_g3eks"]
+[ext_resource type="StyleBox" uid="uid://db61xh1wlvgad" path="res://themes/completed_normal.tres" id="6_v86rl"]
+[ext_resource type="PackedScene" uid="uid://cn2dvu76ioiwj" path="res://scenes/menu3d.tscn" id="7_v86rl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqeox"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjb58"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="Theme" id="Theme_vjb58"]
+default_font = ExtResource("1_yqeox")
+Button/styles/focus = SubResource("StyleBoxFlat_yqeox")
+Button/styles/hover = SubResource("StyleBoxFlat_yqeox")
+Button/styles/normal = SubResource("StyleBoxFlat_yqeox")
+Button/styles/pressed = SubResource("StyleBoxFlat_vjb58")
+
+[sub_resource type="Theme" id="Theme_v86rl"]
+default_font = ExtResource("1_yqeox")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v86rl"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_vjb58")
+script = ExtResource("2_con2f")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[node name="OptionsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 368.0
+offset_right = 472.0
+offset_bottom = 464.0
+text = "OPTIONS"
+
+[node name="CreditsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 368.0
+offset_right = 672.0
+offset_bottom = 464.0
+text = "CREDITS"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 32.0
+offset_right = 800.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 60
+text = "W I R E D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 117.0
+offset_right = 672.0
+offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("2_vjb58")
+theme_override_font_sizes/font_size = 24
+text = "BUILT FOR GMTK 2025"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelButtons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_v86rl")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelButtons"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 192.0
+offset_right = 672.0
+offset_bottom = 256.0
+theme_override_constants/separation = 8
+metadata/_edit_group_ = true
+
+[node name="LevelButton" parent="LevelButtons/HBoxContainer" instance=ExtResource("4_mhnvy")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/pressed = ExtResource("5_g3eks")
+theme_override_styles/normal = ExtResource("6_v86rl")
+
+[node name="LevelButton2" parent="LevelButtons/HBoxContainer" instance=ExtResource("4_mhnvy")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="LevelButton3" parent="LevelButtons/HBoxContainer" instance=ExtResource("4_mhnvy")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="LevelButton4" parent="LevelButtons/HBoxContainer" instance=ExtResource("4_mhnvy")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="LevelButton5" parent="LevelButtons/HBoxContainer" instance=ExtResource("4_mhnvy")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="LevelButtons"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 272.0
+offset_right = 672.0
+offset_bottom = 336.0
+theme_override_constants/separation = 8
+metadata/_edit_group_ = true
+
+[node name="LevelButton" parent="LevelButtons/HBoxContainer2" instance=ExtResource("4_mhnvy")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="LevelButton2" parent="LevelButtons/HBoxContainer2" instance=ExtResource("4_mhnvy")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="LevelButton3" parent="LevelButtons/HBoxContainer2" instance=ExtResource("4_mhnvy")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="LevelButton4" parent="LevelButtons/HBoxContainer2" instance=ExtResource("4_mhnvy")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="LevelButton5" parent="LevelButtons/HBoxContainer2" instance=ExtResource("4_mhnvy")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_right = 416.0
+offset_bottom = 536.0
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(416, 536)
+render_target_update_mode = 4
+
+[node name="Menu3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("7_v86rl")]
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_left = 960.0
+offset_right = 1376.0
+offset_bottom = 536.0
+scale = Vector2(-1, 1)
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer2"]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(416, 536)
+render_target_update_mode = 4
+
+[node name="Menu3D" parent="SubViewportContainer2/SubViewport" instance=ExtResource("7_v86rl")]
+shade = 1
+
+[node name="Credits" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 32.0
+offset_right = 672.0
+offset_bottom = 512.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v86rl")
+
+[node name="Label" type="Label" parent="Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -384.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Developed by MASON KAPLAN
+
+SOUND EFFECTS
+
+Kenney
+ZapSplat.com
+
+MUSIC
+
+OpenGameArt.org
+
+CLIP ART
+
+Kenney"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseCredits" type="Button" parent="Credits"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 32.0
+offset_right = 352.0
+offset_bottom = 64.0
+text = "x"
+
+[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Credits/CloseCredits" to="." method="_on_close_credits_pressed"]

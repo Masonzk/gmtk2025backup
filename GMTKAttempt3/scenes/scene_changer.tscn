@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhlcliyuge7gd"]
+
+[ext_resource type="Script" uid="uid://c5xqryhhy123d" path="res://code/scene_changer.gd" id="1_6xg6a"]
+
+[sub_resource type="Animation" id="Animation_6xg6a"]
+resource_name = "slide_in"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -668), Vector2(0, -128), Vector2(0, -128)]
+}
+
+[sub_resource type="Animation" id="Animation_r0gix"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -668)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r0gix"]
+_data = {
+&"RESET": SubResource("Animation_r0gix"),
+&"slide_in": SubResource("Animation_6xg6a")
+}
+
+[node name="SceneChanger" type="CanvasLayer"]
+script = ExtResource("1_6xg6a")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -668.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_r0gix")
+}
