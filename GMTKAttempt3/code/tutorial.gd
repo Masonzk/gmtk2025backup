@@ -4,13 +4,15 @@ var prompts = [
 	"CLICK TO SELECT A COIL",
 	"CLICK FACES TO EXTRUDE WIRE",
 	"CONNECT ALL MATCHING COLORS",
-	"RIGHT CLICK & DRAG\nTO ADJUST VIEW"
+	"RIGHT CLICK & DRAG\nTO ADJUST VIEW",
+	"USE THE QUICK MENU\nTO NAVIGATE THE LEVELS"
 ]
 var images = [
 	preload("res://tutorial1.png"),
 	preload("res://tutorial2.png"),
 	preload("res://tutorial3.png"),
 	preload("res://tutorial4.png"),
+	preload("res://tutorial5.png")
 	]
 
 var index = 0
