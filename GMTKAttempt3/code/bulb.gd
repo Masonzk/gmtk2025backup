@@ -11,6 +11,10 @@ func _ready() -> void:
 	#$MeshInstance3D.get_surface_override_material(0).albedo_color = Globals.colors_array[color][0]
 	$RightTerminal.get_surface_override_material(0).albedo_color = Globals.colors_array[color][0]
 	$LeftTerminal.get_surface_override_material(0).albedo_color = Globals.colors_array[color][1]
+	
+	$BulbMesh.get_surface_override_material(0).albedo_color = "#34343432" #"#34343432"
+	$BulbMesh/MeshInstance3D.visible = false
+	#$BulbMesh/MeshInstance3D.get_surface_override_material(0).albedo_color = "#5f5f5f"
 
 @onready var rays = [$Right, $Left]
 var connected = [false, false]
@@ -30,7 +34,11 @@ func _process(delta: float) -> void:
 		lit = true
 		$Lit.play()
 		$BulbMesh.get_surface_override_material(0).albedo_color = Globals.colors_array[color][0]
-		$BulbMesh/MeshInstance3D.visible = true
+		#$BulbMesh.get_surface_override_material(0).emission_enabled = true
+		#$BulbMesh.get_surface_override_material(0).energy_multiplier = 5
+		#$BulbMesh.get_surface_override_material(0).emission = Globals.colors_array[color][0]
+		$BulbMesh/MeshInstance3D.get_surface_override_material(0).albedo_color = "#FFFFFF"
+		#$BulbMesh/MeshInstance3D.visible = true
 		
 		Globals.unlit_bulbs -= 1
 		
