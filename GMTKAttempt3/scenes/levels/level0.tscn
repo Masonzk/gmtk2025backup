@@ -1,16 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://driv8fq88bgsy"]
+[gd_scene load_steps=7 format=3 uid="uid://driv8fq88bgsy"]
 
 [ext_resource type="PackedScene" uid="uid://ctia5wdmpr63o" path="res://scenes/main.tscn" id="1_x6ivy"]
 [ext_resource type="PackedScene" uid="uid://c5v1lufn711mq" path="res://scenes/bulb.tscn" id="2_4tcl0"]
+[ext_resource type="Texture2D" uid="uid://lrgs8v4u57jh" path="res://border.png" id="2_5kr0j"]
 [ext_resource type="PackedScene" uid="uid://cw5wsoamgbn6l" path="res://scenes/battery.tscn" id="3_dd0lh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hghvf"]
 size = Vector3(5, 5, 5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ry65h"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.196078)
+albedo_texture = ExtResource("2_5kr0j")
+uv1_scale = Vector3(3, 2, 1)
+texture_filter = 0
+
 [node name="Main" instance=ExtResource("1_x6ivy")]
+song = 1
 
 [node name="Bounds" parent="." index="3"]
 mesh = SubResource("BoxMesh_hghvf")
+surface_material_override/0 = SubResource("StandardMaterial3D_ry65h")
 
 [node name="Bulb" parent="." index="4" instance=ExtResource("2_4tcl0")]
 transform = Transform3D(0.999998, 0, 0.00174533, 0, 1, 0, -0.00174533, 0, 0.999998, 0, 0, -2)

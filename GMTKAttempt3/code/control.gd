@@ -1,7 +1,11 @@
 extends Control
 
 func _ready() -> void:
-	$LevelLabel.text = "LEVEL " + str(Globals.current_level+1)
+	if Globals.current_level == -1:
+		$LevelLabel.text = "TUTORIAL"
+	else:
+		$LevelLabel.text = "LEVEL " + str(Globals.current_level+1)
+	$Panel.visible = false #Globals.levels[Globals.current_level]
 	
 func _on_menu_button_pressed() -> void:
 	SceneChanger.change_scene_to("res://scenes/menu.tscn")

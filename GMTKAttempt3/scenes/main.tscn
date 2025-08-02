@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ctia5wdmpr63o"]
+[gd_scene load_steps=26 format=3 uid="uid://ctia5wdmpr63o"]
 
 [ext_resource type="Script" uid="uid://cvtp2rumfj2q7" path="res://code/camera.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://csbw82n26ojo2" path="res://code/main.gd" id="1_85g3d"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cf1bm6eutd8dx" path="res://image(26).png" id="8_tipki"]
 [ext_resource type="AudioStream" uid="uid://bm5yjyd6fxb8u" path="res://audio/victory1.mp3" id="10_choun"]
 [ext_resource type="FontFile" uid="uid://cq2w2xcc67dm5" path="res://Montserrat-Bold.ttf" id="10_ya4ey"]
+[ext_resource type="FontFile" uid="uid://dvvya0oom7bnl" path="res://Montserrat-Medium.ttf" id="11_eb6dy"]
 
 [sub_resource type="Environment" id="Environment_0wfyh"]
 background_mode = 1
@@ -26,8 +27,10 @@ volumetric_fog_emission = Color(0.051971, 0.051971, 0.051971, 1)
 size = Vector3(7, 7, 7)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
+resource_local_to_scene = true
 transparency = 1
 cull_mode = 2
+shading_mode = 0
 albedo_color = Color(1, 1, 1, 0.196078)
 albedo_texture = ExtResource("1_o5qli")
 uv1_scale = Vector3(3, 2, 1)
@@ -81,6 +84,22 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb6dy"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.572549, 0.572549, 0.572549, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trceg"]
+draw_center = false
+border_color = Color(0.352941, 0.772549, 0.309804, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tefeu"]
 resource_local_to_scene = true
 shading_mode = 0
@@ -96,12 +115,13 @@ material = SubResource("StandardMaterial3D_tefeu")
 size = Vector2(0.05, 0.1)
 
 [sub_resource type="Curve" id="Curve_85g3d"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 1.5), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.95155, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_tefeu"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.247839, 0.495677, 0.766571, 1)
+offsets = PackedFloat32Array(0, 0.317003, 0.616715, 0.763689, 1)
 colors = PackedColorArray(0.917647, 0.196078, 0.235294, 1, 0, 0.596078, 0.862745, 1, 0.352941, 0.772549, 0.309804, 1, 1, 0.784314, 0.145098, 1, 1, 1, 1, 1)
 
 [node name="Main" type="Node3D"]
@@ -110,8 +130,13 @@ script = ExtResource("1_85g3d")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0wfyh")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.433013, 0.5, -0.75, -0.25, 0.866025, 0.433013, 0.866025, 0, 0.5, 0, 0, 0)
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 2.98023e-08, 2.98023e-08, -1.77636e-15, 0.707107, -0.707107, -2.98023e-08, 0.707107, 0.707107, 0, 0, 0)
+light_energy = 0.75
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1.19209e-07, -0.707107, -0.707107, 4.07438e-08, -0.707107, 0.707107, -1, -5.96046e-08, -1.49012e-07, 0, 0, 0)
+light_energy = 0.75
 
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
@@ -120,6 +145,7 @@ script = ExtResource("1_0wfyh")
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
 projection = 1
+current = true
 size = 12.0
 
 [node name="RayCast3D" type="RayCast3D" parent="CameraPivot/Camera3D"]
@@ -138,6 +164,9 @@ pitch_scale = 0.75
 mesh = SubResource("BoxMesh_0wfyh")
 surface_material_override/0 = SubResource("StandardMaterial3D_sugp2")
 metadata/_edit_lock_ = true
+
+[node name="Timer" type="Timer" parent="Bounds"]
+wait_time = 0.25
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -191,20 +220,44 @@ expand_icon = true
 
 [node name="LevelLabel" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 8.0
-offset_right = 160.0
-offset_bottom = 87.0
+offset_left = 792.0
+offset_top = 80.0
+offset_right = 944.0
+offset_bottom = 113.0
 theme_override_fonts/font = ExtResource("10_ya4ey")
-theme_override_font_sizes/font_size = 24
-text = "LEVEL 2"
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_eb6dy")
+text = "LEVEL *"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelInfo" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 792.0
+offset_top = 120.0
+offset_right = 944.0
+offset_bottom = 144.0
+theme_override_fonts/font = ExtResource("11_eb6dy")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_eb6dy")
+text = "LEVEL *"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_trceg")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="." groups=["confetti"]]
 emitting = false
-amount = 512
-lifetime = 3.0
-one_shot = true
-explosiveness = 0.25
+amount = 256
+lifetime = 2.5
 mesh = SubResource("QuadMesh_tefeu")
 emission_shape = 3
 emission_box_extents = Vector3(3.5, 0.5, 3.5)
@@ -219,6 +272,7 @@ tangential_accel_min = -1.0
 tangential_accel_max = 1.0
 angle_min = -720.0
 angle_max = 720.0
+scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_85g3d")
 color_initial_ramp = SubResource("Gradient_tefeu")
 
@@ -226,6 +280,7 @@ color_initial_ramp = SubResource("Gradient_tefeu")
 stream = ExtResource("10_choun")
 volume_db = -15.0
 
+[connection signal="timeout" from="Bounds/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Control/MenuButton" to="Control" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Control/NextLevelButton" to="Control" method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="Control/PreviousLevelButton" to="Control" method="_on_previous_level_button_pressed"]

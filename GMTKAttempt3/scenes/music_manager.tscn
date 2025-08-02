@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5kqbrwkdy0mv"]
+
+[ext_resource type="Script" uid="uid://c1g3cf6ne4cvw" path="res://code/music_manager.gd" id="1_tn5dr"]
+[ext_resource type="AudioStream" uid="uid://cmmqohbcc1mo5" path="res://music/Sketchbook 2024-11-07.ogg" id="2_hetdf"]
+
+[sub_resource type="Animation" id="Animation_hetdf"]
+resource_name = "switch_songs"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-20.0, -80.0, -20.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"switch_songs"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yodp2"]
+_data = {
+&"switch_songs": SubResource("Animation_hetdf")
+}
+
+[node name="MusicManager" type="Node"]
+script = ExtResource("1_tn5dr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_hetdf")
+volume_db = -20.0
+bus = &"Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yodp2")
+}

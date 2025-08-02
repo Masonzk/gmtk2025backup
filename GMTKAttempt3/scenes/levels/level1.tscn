@@ -1,16 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvner8ijn0o3e"]
+[gd_scene load_steps=7 format=3 uid="uid://dvner8ijn0o3e"]
 
 [ext_resource type="PackedScene" uid="uid://ctia5wdmpr63o" path="res://scenes/main.tscn" id="1_x6ivy"]
 [ext_resource type="PackedScene" uid="uid://c5v1lufn711mq" path="res://scenes/bulb.tscn" id="2_4tcl0"]
+[ext_resource type="Texture2D" uid="uid://lrgs8v4u57jh" path="res://border.png" id="2_bfxgj"]
 [ext_resource type="PackedScene" uid="uid://cw5wsoamgbn6l" path="res://scenes/battery.tscn" id="3_dd0lh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_x6ivy"]
 size = Vector3(5, 5, 5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dywbp"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.196078)
+albedo_texture = ExtResource("2_bfxgj")
+uv1_scale = Vector3(3, 2, 1)
+texture_filter = 0
+
 [node name="Main" instance=ExtResource("1_x6ivy")]
+song = 1
 
 [node name="Bounds" parent="." index="3"]
 mesh = SubResource("BoxMesh_x6ivy")
+surface_material_override/0 = SubResource("StandardMaterial3D_dywbp")
 
 [node name="Battery" parent="." index="4" instance=ExtResource("3_dd0lh")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, -2, 2)

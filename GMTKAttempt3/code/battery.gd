@@ -10,7 +10,8 @@ func _ready() -> void:
 	for i in range(2):
 		var instance = load("res://scenes/coil.tscn").instantiate()
 		instance.transform.origin = get_node("Position"+str(i+1)).global_transform.origin
-		instance.history.append(get_node("Position"+str(i+1)).global_transform.origin-get_node("Normal"+str(i+1)).global_transform.origin)
+		var prev_normal = get_node("Position"+str(i+1)).global_transform.origin-get_node("Normal"+str(i+1)).global_transform.origin
+		instance.history.append(round(prev_normal))
 		instance.get_node("MeshInstance3D").get_surface_override_material(0).albedo_color = Globals.colors_array[color][i]
 		instance.color = Globals.colors_array[color][i]
 		instance.color_id = color

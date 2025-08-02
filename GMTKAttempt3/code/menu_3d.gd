@@ -1,25 +1,41 @@
 extends Node3D
 
-var build_up = true
-
 @export var shade : int
 
-func _ready() -> void:
-	randomize()
-	$Blocks/MeshInstance3D.get_surface_override_material(0).albedo_color = Globals.colors_array[randi_range(0, 4)][shade]
+var color : int
+
+var target_pos : Vector3
+
+signal connected
+signal disconnected
+
+#func _ready() -> void:
+	#$Coil.get_surface_override_material(0).albedo_color = Globals.colors_array[color][shade]
+
 func _process(delta: float) -> void:
-	pass
-	#if build_up:
-		#for block in $Blocks.get_children():
-			#block.visible = true
-			#await get_tree().create_timer(0.25).timeout
-		#build_up = false
-	#else:
-		#var blocks = $Blocks.get_children()
-		#blocks.reverse()
-		##for i in range(children.size()):
-		#for block in blocks:
-			#block.visible = false
-			#await get_tree().create_timer(0.05).timeout
-		#build_up = true
-			#
+	$Coil.transform.origin = lerp($Coil.transform.origin, target_pos, 0.3)
+	
+func build_up():
+	$Coil.get_surface_override_material(0).albedo_color = Globals.colors_array[color][shade]
+	
+	var blocks = $Blocks.get_children()
+	for block in range(blocks.size()-1):
+		#$Coil.transform.origin = blocks[block+1].transform.origin
+		target_pos = blocks[block+1].global_transform.origin
+		blocks[block].visible = true
+		await get_tree().create_timer(0.15).timeout #0.5
+	emit_signal("connected")
+	await get_tree().create_timer(5).timeout
+	build_down()
+
+func build_down():
+	emit_signal("disconnected")
+	var blocks = $Blocks.get_children()
+	for block in range(blocks.size()-1):
+		var i = blocks.size()-block-1
+		#$Coil.transform.origin = blocks[block+1].transform.origin
+		target_pos = blocks[i-1].global_transform.origin
+		blocks[i].visible = false
+		await get_tree().create_timer(0.1).timeout #0.25
+	await get_tree().create_timer(1).timeout
+	build_up()

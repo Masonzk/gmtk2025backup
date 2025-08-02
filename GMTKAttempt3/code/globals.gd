@@ -11,3 +11,9 @@ var levels = [false, false, false, false, false, false, false, false, false, fal
 var current_level : int = 0
 
 var unlit_bulbs = 999
+
+var completed_tutorial = false
+
+func change_volume(bus, new_volume, mute):
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(bus), mute)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus), new_volume)

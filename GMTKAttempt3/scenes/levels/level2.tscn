@@ -1,59 +1,80 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjpk1qsdajo3y"]
+[gd_scene load_steps=8 format=3 uid="uid://cjpk1qsdajo3y"]
 
 [ext_resource type="PackedScene" uid="uid://ctia5wdmpr63o" path="res://scenes/main.tscn" id="1_e0cvd"]
 [ext_resource type="PackedScene" uid="uid://cw5wsoamgbn6l" path="res://scenes/battery.tscn" id="2_71baw"]
+[ext_resource type="Texture2D" uid="uid://lrgs8v4u57jh" path="res://border.png" id="2_d5djh"]
 [ext_resource type="PackedScene" uid="uid://c5v1lufn711mq" path="res://scenes/bulb.tscn" id="3_niitk"]
 [ext_resource type="PackedScene" uid="uid://b0gb4g6sa4nam" path="res://scenes/obstacle.tscn" id="4_niitk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_71baw"]
 size = Vector3(7, 7, 7)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ok6xr"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.196078)
+albedo_texture = ExtResource("2_d5djh")
+uv1_scale = Vector3(3, 2, 1)
+texture_filter = 0
+
 [node name="Main" instance=ExtResource("1_e0cvd")]
+song = 4
 
 [node name="Bounds" parent="." index="3"]
 mesh = SubResource("BoxMesh_71baw")
+surface_material_override/0 = SubResource("StandardMaterial3D_ok6xr")
 
 [node name="Battery" parent="." index="4" instance=ExtResource("2_71baw")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, -2, 3)
 
 [node name="Battery3" parent="." index="5" instance=ExtResource("2_71baw")]
-transform = Transform3D(-4.37114e-08, -8.74228e-08, 1, 1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 8.74228e-08, -3, 0, 1)
+transform = Transform3D(-4.37114e-08, -8.74228e-08, 1, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, -8.74228e-08, -3, 0, 1)
 color = 2
 
 [node name="Battery2" parent="." index="6" instance=ExtResource("2_71baw")]
-transform = Transform3D(-1, -8.74228e-08, -1.52855e-14, 8.74228e-08, -1, -1.74846e-07, 0, -1.74846e-07, 1, -1, 1, -3)
+transform = Transform3D(1, 2.13163e-14, -2.20229e-20, -2.13163e-14, 1, 1.74846e-07, 0, -1.74846e-07, 1, -1, 0, -3)
 color = 1
 
-[node name="Bulb" parent="." index="7" instance=ExtResource("3_niitk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, -2)
+[node name="Battery4" parent="." index="7" instance=ExtResource("2_71baw")]
+transform = Transform3D(-1, -8.74228e-08, -1.52855e-14, 8.74228e-08, -1, -1.74846e-07, 0, -1.74846e-07, 1, -1, 2, -3)
+color = 3
 
-[node name="Bulb3" parent="." index="8" instance=ExtResource("3_niitk")]
+[node name="Bulb" parent="." index="8" instance=ExtResource("3_niitk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, -3)
+
+[node name="Bulb3" parent="." index="9" instance=ExtResource("3_niitk")]
 transform = Transform3D(-8.74228e-08, 4.37114e-08, -1, -1, -4.37114e-08, 8.74228e-08, -4.37114e-08, 1, 4.37114e-08, 3, -1, 1)
 color = 2
 
-[node name="Bulb2" parent="." index="9" instance=ExtResource("3_niitk")]
+[node name="Bulb4" parent="." index="10" instance=ExtResource("3_niitk")]
+transform = Transform3D(4.37114e-08, -1, -1.06581e-14, -1, -4.37114e-08, 8.74228e-08, -8.74228e-08, 1.06581e-14, -1, 3, -2, 3)
+color = 3
+
+[node name="Bulb2" parent="." index="11" instance=ExtResource("3_niitk")]
 transform = Transform3D(-5.73206e-15, 1.74846e-07, -1, -4.37114e-08, 1, 1.74846e-07, 1, 4.37114e-08, 1.91069e-15, 3, 1, -2)
 color = 1
 
-[node name="Obstacle" parent="." index="13" instance=ExtResource("4_niitk")]
+[node name="Obstacle" parent="." index="15" instance=ExtResource("4_niitk")]
 
-[node name="Obstacle2" parent="." index="14" instance=ExtResource("4_niitk")]
+[node name="Obstacle2" parent="." index="16" instance=ExtResource("4_niitk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
-[node name="Obstacle3" parent="." index="15" instance=ExtResource("4_niitk")]
+[node name="Obstacle3" parent="." index="17" instance=ExtResource("4_niitk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 
-[node name="Obstacle4" parent="." index="16" instance=ExtResource("4_niitk")]
+[node name="Obstacle4" parent="." index="18" instance=ExtResource("4_niitk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
-[node name="Obstacle5" parent="." index="17" instance=ExtResource("4_niitk")]
+[node name="Obstacle5" parent="." index="19" instance=ExtResource("4_niitk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Obstacle6" parent="." index="18" instance=ExtResource("4_niitk")]
+[node name="Obstacle6" parent="." index="20" instance=ExtResource("4_niitk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
 
-[node name="Obstacle7" parent="." index="19" instance=ExtResource("4_niitk")]
+[node name="Obstacle7" parent="." index="21" instance=ExtResource("4_niitk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, 1)
 
-[node name="Obstacle8" parent="." index="20" instance=ExtResource("4_niitk")]
+[node name="Obstacle8" parent="." index="22" instance=ExtResource("4_niitk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, 0)

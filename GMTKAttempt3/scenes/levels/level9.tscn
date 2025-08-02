@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmdloeky44s5p"]
-
-[ext_resource type="PackedScene" uid="uid://ctia5wdmpr63o" path="res://scenes/main.tscn" id="1_gg3wg"]
-[ext_resource type="PackedScene" uid="uid://cqu32b4g0wpq6" path="res://scenes/zap.tscn" id="2_pndvc"]
-
-[node name="Main" instance=ExtResource("1_gg3wg")]
-
-[node name="Zap" parent="." index="7" instance=ExtResource("2_pndvc")]
-position = Vector2(888, 464)
